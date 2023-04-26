@@ -1,0 +1,90 @@
+Install this file : EVE Comm Edition.ova 
+
+
+
+apt-get update
+apt-get upgrade
+..................................root
+Transfer the file Nokia-VSR-VM-19.7.R1.zip to the EVE using SCP or Filezilla to the root directory using IP from the EVE shell(eg 192.168.128.24)--EVE IP
+
+mkdir tmp
+cd tmp
+
+root@eve-ng:~/tmp# 
+root@eve-ng:~/tmp# unzip ../Nokia-VSR-VM-19.7.R1.zip
+Archive:  ../Nokia-VSR-VM-19.7.R1.zip
+   creating: vm/
+   creating: vm/7xxx-i386/
+ extracting: vm/7xxx-i386/sros-vm.ova  
+ extracting: vm/7xxx-i386/sros-vm.ova.md5sum  
+ extracting: vm/7xxx-i386/sros-vm.qcow2  
+ extracting: vm/7xxx-i386/sros-vm.qcow2.md5sum  
+root@eve-ng:~/tmp# 
+root@eve-ng:~/tmp# 
+root@eve-ng:~/tmp# 
+root@eve-ng:~/tmp# 
+
+root@eve-ng:~/tmp# mkdir -p /opt/unetlab/addons/qemu/timos-19.7.R1
+root@eve-ng:~/tmp# ln -s /opt/unetlab/addons/qemu/timos-19.7.R1 /opt/unetlab/addons/qemu/timoscpm-19.7.R1
+root@eve-ng:~/tmp# ln -s /opt/unetlab/addons/qemu/timos-19.7.R1 /opt/unetlab/addons/qemu/timosiom-19.7.R1 
+root@eve-ng:~/tmp# mv vm/sros-i386/sros-vm.qcow2 /opt/unetlab/addons/qemu/timos-19.7.R1/hda.qcow2 
+root@eve-ng:~/tmp# 
+root@eve-ng:~/tmp# cd ..
+root@eve-ng:~# 
+root@eve-ng:~# /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+root@eve-ng:~# 
+root@eve-ng:~# 
+root@eve-ng:~# guestfish -a /opt/unetlab/addons/qemu/timos-19.7.R1/hda.qcow2
+
+Welcome to guestfish, the guest filesystem shell for
+editing virtual machine filesystems and disk images.
+
+Type: 'help' for help on commands
+      'man' to read the manual
+      'quit' to quit the shellr
+
+
+
+
+><fs> run
+$<2>\ 50% [#######################################################################-----------------------------------------------------------------------] 00$<2>| 75% [##########################################################################################################------------------------------------] 00$<2> 100% [##############################################################################################################################################] 00:00
+><fs> 
+><fs> 
+><fs> 
+><fs>
+
+
+
+><fs> 
+><fs> mount /dev/sda1 /
+><fs> 
+><fs> 
+><fs> touch /lic
+><fs> 
+><fs> 
+><fs> vi /lic
+
+Press i(insert) then paste the License as shown below
+
+00000000-0000-0000-0000-000000000000 jACcAli6cpbAACAAaAleWDMVdnN1YhIqU19bfCNCH1J4HWQoVQJvSAMABQAAAAAABQAcAApCT1wAAAAAAAAAAAAAAAB/5TxdAAAAAMAAKAAvXQ8gW1Q0C3VlTGpyKBQ9CVtMEABrAhEMVgAqIUpgJUEdTUsCABIATk9LSUEgQkVMTCBOVgAAAAEAKQAwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAAAAAAwAAoADAbXFRmfDRPZRR6W34XAC0GZm8MamhtQEUmYDFAA1s3UTQFRwQAFgBUaU1PUy1bQkNdLTE0LjAuKgAAAAYADAABAAEAAAAAAMAAPAAmYGAObBM7U3IGdy4Jfg5zUXteXANFZm94F30YAT8tYEthBxkeJygEGE9xAFM8FRJAN2gJGnkoZw8AXQFUU2tqSUVyK1FsL1lsbjdVUFNMdDkrVXBXSWxiN295R3NzbFVZQ25hdFBFL2lkaDJsbU82NHkvdEVJZHVuTnpnVUJTNHZlWHdkcWJCNFZRUy9SRrTUwUGRFbWx4OVd6NTlENmhuUnRTd0NPTzZOZEJiOGRZL051L2tSRHd1clU0TXhjNDZaU1VTQjFTdDJWaWw2bXNrVVBkVXRCWHRJbjQ2cHZPZXVGVEM5dFRLOUZieU5NbHBhRW1ZYUl1U3ZhZ3JpN2NXeHBNTlRkdkU4RVhLdUVGN1hTUlFDakVFRE1GaXdLUWNvYVNTRHByOHpNU2JsRGQ4azFrVXJLWnlOc1Vpemorb3RudjdDS3pnU0dpV1FETlN5ckJKZmVMeE4vVkhnQUQwTTRxNFh3L0pqRHBEcUFDTk0rQnBvQTdRRDFpRFE2eHBaaDdMbzdwRVFrL0JseVBrdEE9PQAAAAA= # NOKIA BELL NV(TiMOS-[BC]-14.0.*)
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+Press esc key then :x! to save and quit
+
+><fs> exit
+
+*******************************************************************************************************
+
+Edit the license path with
+
+cf3:\lic
